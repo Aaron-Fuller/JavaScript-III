@@ -27,7 +27,7 @@ const myObj = {
       console.log(this);
     }
   };
-  myObj.sayHello('Ryan');
+  myObj.sayHello('Aaron');
 
 // Principle 3
 // code example for New Binding
