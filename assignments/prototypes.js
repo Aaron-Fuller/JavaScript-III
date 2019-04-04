@@ -22,15 +22,28 @@ function GameObject(attrs) {
 }
 GameObject.prototype.destroy =
 function(destroy) {
-  return(`${this.name} was removed from the game`);
+  return `${this.name} was removed from the game`;
 };
+
+//console.log(GameObject);
+
 /*
   === CharacterStats ===
   * healthPoints
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
+CharacterStats.prototype = Object.create(GameObject.prototype);
 
+function CharacterStats(attrs) {
+  this.healthPoints = attrs.healthPoints;
+}
+CharacterStats.prototype.damage =
+function(takeDamage) {
+  return `${this.name} took damage`;
+}
+
+//console.log(GameObject);
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
   * team
@@ -40,7 +53,20 @@ function(destroy) {
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
- 
+Humanoid.prototype = Object.create(CharacterStats.prototype);
+
+function Humanoid(attrs){
+  this.team = attrs.team;
+  this.weapons = attrs.weapons;
+  this.language = attrs.language;
+}
+
+Humanoid.prototype.greet =
+function(greet){
+  return `${this.name} offers a greetings in ${this.language}`
+}
+
+console.log(Humanoid);
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
